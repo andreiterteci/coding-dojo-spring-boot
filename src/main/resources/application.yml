@@ -1,1 +1,16 @@
-
+# A common practice is using different api keys for production and development environments.
+# If that were the case, we could move this variable below to the specific profile configuration file
+# For this task I will use the same key for both environments
+openweather:
+  endpoints:
+    # The URL was initially using HTTP protocol.
+    # Not sure if it was a typo or a part of this exercise, but we should always use HTTPS over HTTP
+    currentWeather: https://api.openweathermap.org/data/2.5/weather?q={city}&APPID={apiKey}
+  apiKey: ${OPENWEATHER_API_KEY}
+logging:
+  level:
+    root: info
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

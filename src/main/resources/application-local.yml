@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/lease_plan
+    username: lease_plan
+    password: lease_plan
+logging:
+  level:
+    com.assignment.spring: debug

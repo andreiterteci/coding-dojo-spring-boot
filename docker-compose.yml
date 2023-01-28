@@ -1,0 +1,26 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:14.5
+    environment:
+      POSTGRES_USER: lease_plan
+      POSTGRES_PASSWORD: lease_plan
+      POSTGRES_DB: lease_plan
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      PROD_DATABASE_URL: jdbc:postgresql://postgres:5432/lease_plan
+      DATABASE_USERNAME: lease_plan
+      DATABASE_PASSWORD: lease_plan
+      OPENWEATHER_API_KEY: ${OPENWEATHER_API_KEY}
+    depends_on:
+      - postgres
+volumes:
+  pgdata:
+    driver: local
